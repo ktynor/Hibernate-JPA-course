@@ -1,4 +1,4 @@
-package entity;
+package pl.nullpointerexception.hibernate.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,6 +15,7 @@ public class Product {
     private LocalDateTime updated;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private ProductType productType;
 
     public Long getId() {
@@ -71,5 +72,18 @@ public class Product {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", price=" + price +
+                ", productType=" + productType +
+                '}';
     }
 }
