@@ -96,7 +96,6 @@ public class Product {
                 ", updated=" + updated +
                 ", price=" + price +
                 ", productType=" + productType +
-                ", reviews=" + reviews +
                 '}';
     }
 }
