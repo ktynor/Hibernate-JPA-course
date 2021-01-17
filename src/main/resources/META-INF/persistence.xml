@@ -5,16 +5,17 @@
              version="2.1">
     <persistence-unit name="unit" transaction-type="RESOURCE_LOCAL">
         <class>pl.nullpointerexception.hibernate.entity.Product</class>
+        <class>pl.nullpointerexception.hibernate.entity.Review</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=GMT" />
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="1234abcD" />
+                      value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=GMT"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="1234abcD"/>
 
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
