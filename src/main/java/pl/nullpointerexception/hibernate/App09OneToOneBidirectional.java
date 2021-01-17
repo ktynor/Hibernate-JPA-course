@@ -20,7 +20,7 @@ public class App09OneToOneBidirectional {
 
         Category category = em.find(Category.class, 1L);
         logger.info(category.getName());
-        logger.info(category.getProduct());
+        logger.info(category.getProducts());
 
         em.getTransaction().commit();
         em.close();

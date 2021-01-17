@@ -1,6 +1,7 @@
 package pl.nullpointerexception.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -10,8 +11,8 @@ public class Category {
     private String name;
     private String description;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "category")
-    private  Product product;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -37,11 +38,11 @@ public class Category {
         this.description = description;
     }
 
-    public Product getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
