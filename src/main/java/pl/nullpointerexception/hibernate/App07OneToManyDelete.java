@@ -16,7 +16,7 @@ public class App07OneToManyDelete {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        Product product = em.find(Product.class, 1L);
+        Product product = em.find(Product.class, 2L);
         em.remove(product);
 
         em.getTransaction().commit();
