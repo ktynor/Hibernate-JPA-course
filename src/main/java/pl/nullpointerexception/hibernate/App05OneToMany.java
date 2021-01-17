@@ -19,7 +19,8 @@ public class App05OneToMany {
 
         List<Product> products = em.createQuery("select p from Product p").getResultList();
         for (Product product : products) {
-            logger.info(product);
+            logger.info(product.getName());
+            logger.info(product.getReviews());
         }
         em.getTransaction().commit();
         em.close();
