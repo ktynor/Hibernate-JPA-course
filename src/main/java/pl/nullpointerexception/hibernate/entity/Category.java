@@ -1,9 +1,6 @@
 package pl.nullpointerexception.hibernate.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Category {
@@ -12,6 +9,9 @@ public class Category {
     private Long id;
     private String name;
     private String description;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "category")
+    private  Product product;
 
     public Long getId() {
         return id;
@@ -35,5 +35,13 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
