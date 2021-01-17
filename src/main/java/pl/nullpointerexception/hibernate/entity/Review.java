@@ -1,9 +1,6 @@
 package pl.nullpointerexception.hibernate.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Review {
@@ -12,6 +9,8 @@ public class Review {
     private Long id;
     private String content;
     private int rating;
+    @Column(name = "product_id")
+    private Long productId;
 
     public Long getId() {
         return id;
@@ -37,12 +36,21 @@ public class Review {
         this.rating = rating;
     }
 
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", rating=" + rating +
+                ", productId=" + productId +
                 '}';
     }
 }
