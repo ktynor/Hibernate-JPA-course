@@ -19,8 +19,7 @@ public class Product {
     @Column(name = "type")
     private ProductType productType;
 
-    @OneToMany
-    @JoinColumn(name = "product_id")
+    @OneToMany(mappedBy = "product")
     private List<Review> reviews;
 
     public Long getId() {

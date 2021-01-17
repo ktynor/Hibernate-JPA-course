@@ -9,8 +9,8 @@ public class Review {
     private Long id;
     private String content;
     private int rating;
-    @Column(name = "product_id")
-    private Long productId;
+    @ManyToOne
+    private Product product;
 
     public Long getId() {
         return id;
@@ -36,12 +36,12 @@ public class Review {
         this.rating = rating;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
@@ -50,7 +50,6 @@ public class Review {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", rating=" + rating +
-                ", productId=" + productId +
                 '}';
     }
 }
