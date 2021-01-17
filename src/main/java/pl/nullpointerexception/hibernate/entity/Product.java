@@ -3,6 +3,7 @@ package pl.nullpointerexception.hibernate.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -17,6 +18,10 @@ public class Product {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private ProductType productType;
+
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private List<Review> reviews;
 
     public Long getId() {
         return id;
@@ -84,6 +89,7 @@ public class Product {
                 ", updated=" + updated +
                 ", price=" + price +
                 ", productType=" + productType +
+                ", reviews=" + reviews +
                 '}';
     }
 }
