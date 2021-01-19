@@ -28,7 +28,7 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY)
     private Category category;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "attribute_id")}

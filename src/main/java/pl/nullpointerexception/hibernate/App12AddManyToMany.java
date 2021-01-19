@@ -19,7 +19,14 @@ public class App12AddManyToMany {
         em.getTransaction().begin();
 
         Product product = em.find(Product.class, 5L);
-        Attribute attribute = em.find(Attribute.class, 1L);
+//        Attribute attribute = em.find(Attribute.class, 1L);
+//        product.addAttributes(attribute);
+
+        Attribute attribute = new Attribute();
+        attribute.setName("COLOR");
+        attribute.setValue("Black");
+
+        //no need to em.persist(attribute); because we used:@ManyToMany(cascade = CascadeType.PERSIST) in Product
         product.addAttributes(attribute);
 
         em.getTransaction().commit();
