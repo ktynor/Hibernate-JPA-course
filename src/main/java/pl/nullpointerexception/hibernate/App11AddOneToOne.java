@@ -19,7 +19,10 @@ public class App11AddOneToOne {
         em.getTransaction().begin();
 
         Product product = em.find(Product.class, 3L);
-        Category category = em.find(Category.class, 2L);
+        Category category = new Category();
+        category.setName("Nowa Kategoria");
+        category.setDescription("Opis nowej kategorii");
+        em.persist(category);//save to DB before apply to any product!
         product.setCategory(category);
 
         em.getTransaction().commit();
