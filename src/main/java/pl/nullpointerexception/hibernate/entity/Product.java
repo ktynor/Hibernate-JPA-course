@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -31,7 +33,7 @@ public class Product {
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "attribute_id")}
     )
-    private List<Attribute> attributes = new ArrayList<>();//initiate an ArrayList to avoid nullPointer Exception in addAttributes() method.
+    private Set<Attribute> attributes = new HashSet<>();//change a List to Set to avoid duplicates in a list.
 
     public void addAttributes(Attribute attribute) {
         attributes.add(attribute);
@@ -110,11 +112,11 @@ public class Product {
         this.category = category;
     }
 
-    public List<Attribute> getAttributes() {
+    public Set<Attribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<Attribute> attributes) {
+    public void setAttributes(Set<Attribute> attributes) {
         this.attributes = attributes;
     }
 

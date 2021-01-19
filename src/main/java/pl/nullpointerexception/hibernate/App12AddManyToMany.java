@@ -19,7 +19,7 @@ public class App12AddManyToMany {
         em.getTransaction().begin();
 
         Product product = em.find(Product.class, 5L);
-        Attribute attribute=em.find(Attribute.class, 1L);
+        Attribute attribute = em.find(Attribute.class, 1L);
         product.addAttributes(attribute);
 
         em.getTransaction().commit();
