@@ -25,6 +25,13 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY)
     private Category category;
 
+    @ManyToMany
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "attribute_id")}
+    )
+    private List<Attribute> attributes;
+
     public Long getId() {
         return id;
     }
@@ -95,6 +102,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
     }
 
     @Override
