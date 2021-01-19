@@ -3,6 +3,7 @@ package pl.nullpointerexception.hibernate.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,7 +31,12 @@ public class Product {
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "attribute_id")}
     )
-    private List<Attribute> attributes;
+    private List<Attribute> attributes = new ArrayList<>();//initiate an ArrayList to avoid nullPointer Exception in addAttributes() method.
+
+    public void addAttributes(Attribute attribute) {
+        attributes.add(attribute);
+        attribute.getProducts().add(this);
+    }
 
     public Long getId() {
         return id;

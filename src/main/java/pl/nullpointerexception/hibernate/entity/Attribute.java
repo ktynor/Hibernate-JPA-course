@@ -1,6 +1,7 @@
 package pl.nullpointerexception.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,7 @@ public class Attribute {
     private String name;
     private String value;
     @ManyToMany(mappedBy = "attributes")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     public Long getId() {
         return id;
