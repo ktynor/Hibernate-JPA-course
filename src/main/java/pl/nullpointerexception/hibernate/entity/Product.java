@@ -22,8 +22,8 @@ public class Product {
     @Column(name = "type")
     private ProductType productType;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    private List<Review> reviews = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     private Category category;
@@ -38,6 +38,11 @@ public class Product {
     public void addAttributes(Attribute attribute) {
         attributes.add(attribute);
         attribute.getProducts().add(this);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+        review.setProduct(this);
     }
 
     public Long getId() {
