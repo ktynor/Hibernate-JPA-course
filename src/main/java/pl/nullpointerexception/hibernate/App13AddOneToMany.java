@@ -19,13 +19,15 @@ public class App13AddOneToMany {
         em.getTransaction().begin();
 
         Product product = em.find(Product.class, 5L);
-        Review review = new Review();
-        review.setContent("Nowa opinia");
-        review.setRating(5);
-//        review.setProduct(product);
-        product.addReview(review);
-//        em.persist(review);
+//        Review review = new Review();
+//        review.setContent("Nowa opinia");
+//        review.setRating(5);
+////        review.setProduct(product);
+//        product.addReview(review);
+////        em.persist(review);
+//        product.addReview(review);
 
+        Review review = em.find(Review.class, 12L);
         product.addReview(review);
 
         em.getTransaction().commit();
