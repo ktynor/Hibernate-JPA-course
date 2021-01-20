@@ -17,6 +17,7 @@ public class App15DeleteManyToMany {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("unit");
 
     public static void main(String[] args) {
+
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
