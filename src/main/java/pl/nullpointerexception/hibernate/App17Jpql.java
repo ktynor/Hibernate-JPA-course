@@ -24,9 +24,10 @@ public class App17Jpql {
 
         TypedQuery<Product> query = em.createQuery(
                 "select p from Product p " +
-                        "where p.name like '%04'",
+                        "where p.id=:id",//id value flexible to define in query.setParameter("id", value);
                 Product.class//return
         );
+        query.setParameter("id", 3L);
         List<Product> resultList = query.getResultList();
         for (Product product : resultList) {
             logger.info(product);//print output
