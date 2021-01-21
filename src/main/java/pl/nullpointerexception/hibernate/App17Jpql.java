@@ -28,10 +28,14 @@ public class App17Jpql {
                 Product.class//return
         );
         query.setParameter("id", 3L);
-        List<Product> resultList = query.getResultList();
-        for (Product product : resultList) {
-            logger.info(product);//print output
-        }
+
+        Product product = query.getSingleResult();//single result instead the list
+        logger.info(product);
+
+//        List<Product> resultList = query.getResultList();
+//        for (Product product : resultList) {
+//            logger.info(product);//print output
+//        }
 
         em.getTransaction().commit();
         em.close();
