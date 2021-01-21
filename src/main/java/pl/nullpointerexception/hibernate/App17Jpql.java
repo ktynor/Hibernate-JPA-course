@@ -30,7 +30,8 @@ public class App17Jpql {
             Product product = query.getSingleResult();//single result instead the list
             logger.info(product);
         } catch (NoResultException e) {
-            logger.error("Brak wynikow", e);
+//            logger.error("Brak wynikow", e);
+            throw new RuntimeException("Brak wynikow", e);
         }
 
 //        List<Product> resultList = query.getResultList();
