@@ -26,18 +26,11 @@ public class App17Jpql {
         );
         query.setParameter("id", 300L);
 
-        try {
-            Product product = query.getSingleResult();//single result instead the list
-            logger.info(product);
-        } catch (NoResultException e) {
-//            logger.error("Brak wynikow", e);
-            throw new RuntimeException("Brak wynikow", e);
-        }
+        Product product = query.getResultStream()//if not found, returns empty list
+                .findFirst()//optional
+                .orElseThrow(() -> new RuntimeException("Brak wynikow"));
+        logger.info(product);
 
-//        List<Product> resultList = query.getResultList();
-//        for (Product product : resultList) {
-//            logger.info(product);//print output
-//        }
 
         em.getTransaction().commit();
         em.close();
