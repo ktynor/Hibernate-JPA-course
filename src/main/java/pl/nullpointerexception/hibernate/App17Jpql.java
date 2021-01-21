@@ -23,7 +23,8 @@ public class App17Jpql {
         em.getTransaction().begin();
 
         TypedQuery<Product> query = em.createQuery(
-                "select p from Product p order by p.id DESC",
+                "select p from Product p " +
+                        "where p.name like '%04'",
                 Product.class//return
         );
         List<Product> resultList = query.getResultList();
