@@ -20,11 +20,13 @@ public class App17Jpql {
         em.getTransaction().begin();
 
         Query query = em.createQuery(
-                "select COUNT(p), AVG(p.price) from Product p"//several results in one query
+                "select COUNT(p) from Product p group by p.category"
         );
 
-        Object[] result = (Object[]) query.getSingleResult();//returns an array of results
-        logger.info(result[0] + ", " + result[1]);
+        List<Long> resultList = query.getResultList();
+        for (Long aLong : resultList) {
+            logger.info(aLong);
+        }
 
         em.getTransaction().commit();
         em.close();
