@@ -19,18 +19,12 @@ public class App17Jpql {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        TypedQuery<Product> query = em.createQuery(
-                "select p from Product p " +
-                        "where p.id=:id",//id value flexible to define in query.setParameter("id", value);
-                Product.class//return
+        Query query = em.createQuery(
+                "select AVG(p.price) from Product p"
         );
-        query.setParameter("id", 300L);
 
-        Product product = query.getResultStream()//if not found, returns empty list
-                .findFirst()//optional
-                .orElseThrow(() -> new RuntimeException("Brak wynikow"));
-        logger.info(product);
-
+        Double singleResult = (Double) query.getSingleResult();
+        logger.info(singleResult);
 
         em.getTransaction().commit();
         em.close();
