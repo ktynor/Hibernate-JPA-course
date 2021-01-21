@@ -20,10 +20,12 @@ public class App17Jpql {
         em.getTransaction().begin();
 
         Query query = em.createQuery(
-                "select AVG(p.price) from Product p"
+                "select AVG(p.price) from Product p " +
+                        "where p.id=:id"
         );
+        query.setParameter("id", 100L);
 
-        Double singleResult = (Double) query.getSingleResult();
+        Double singleResult = (Double) query.getSingleResult();//returns null
         logger.info(singleResult);
 
         em.getTransaction().commit();
