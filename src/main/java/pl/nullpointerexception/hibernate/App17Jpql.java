@@ -6,10 +6,7 @@ import pl.nullpointerexception.hibernate.entity.Product;
 import pl.nullpointerexception.hibernate.entity.Review;
 import pl.nullpointerexception.hibernate.entity.ReviewDto;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 public class App17Jpql {
@@ -27,10 +24,14 @@ public class App17Jpql {
                         "where p.id=:id",//id value flexible to define in query.setParameter("id", value);
                 Product.class//return
         );
-        query.setParameter("id", 3L);
+        query.setParameter("id", 300L);
 
-        Product product = query.getSingleResult();//single result instead the list
-        logger.info(product);
+        try {
+            Product product = query.getSingleResult();//single result instead the list
+            logger.info(product);
+        } catch (NoResultException e) {
+            logger.error("Brak wynikow", e);
+        }
 
 //        List<Product> resultList = query.getResultList();
 //        for (Product product : resultList) {
