@@ -2,9 +2,6 @@ package pl.nullpointerexception.hibernate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.nullpointerexception.hibernate.entity.Product;
-import pl.nullpointerexception.hibernate.entity.Review;
-import pl.nullpointerexception.hibernate.entity.ReviewDto;
 
 import javax.persistence.*;
 import java.util.List;
