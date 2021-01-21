@@ -20,13 +20,11 @@ public class App17Jpql {
         em.getTransaction().begin();
 
         Query query = em.createQuery(
-                "select AVG(p.price) from Product p " +
-                        "where p.id=:id"
+                "select COUNT(p), AVG(p.price) from Product p"//several results in one query
         );
-        query.setParameter("id", 100L);
 
-        Double singleResult = (Double) query.getSingleResult();//returns null
-        logger.info(singleResult);
+        Object[] result = (Object[]) query.getSingleResult();//returns an array of results
+        logger.info(result[0] + ", " + result[1]);
 
         em.getTransaction().commit();
         em.close();
