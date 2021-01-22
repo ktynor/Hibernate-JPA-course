@@ -3,6 +3,8 @@ package pl.nullpointerexception.hibernate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.nullpointerexception.hibernate.entity.Category;
+import pl.nullpointerexception.hibernate.entity.Customer;
+import pl.nullpointerexception.hibernate.entity.Order;
 import pl.nullpointerexception.hibernate.entity.Product;
 
 import javax.persistence.*;
@@ -28,13 +30,22 @@ having total > 50
 ORDER BY total DESC
 ;
  */
-        Query query= em.createQuery(
+        Query query = em.createQuery(
                 "select c from Customer c" +
                         " inner join fetch c.orders o" +
                         " inner join fetch o.orderRows orw" +
                         " inner join fetch orw.product p" +
                         " inner join fetch p.category ca"
         );
+
+        List<Customer> resultList = query.getResultList();
+        for (Customer customer : resultList) {
+            logger.info(customer);
+            for (Order order : customer.getOrders()) {
+                logger.info(order);
+                logger.info(order.getOrderRows());
+            }
+        }
 
         em.getTransaction().commit();
         em.close();
