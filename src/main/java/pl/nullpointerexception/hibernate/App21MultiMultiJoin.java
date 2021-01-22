@@ -31,11 +31,12 @@ ORDER BY total DESC
 ;
  */
         Query query = em.createQuery(
-                "select c from Customer c" +
+                "select distinct c from Customer c" +
                         " inner join fetch c.orders o" +
                         " inner join fetch o.orderRows orw" +
                         " inner join fetch orw.product p" +
-                        " inner join fetch p.category ca"
+                        " inner join fetch p.category ca" +
+                        " group by ca, c"
         );
 
         List<Customer> resultList = query.getResultList();
