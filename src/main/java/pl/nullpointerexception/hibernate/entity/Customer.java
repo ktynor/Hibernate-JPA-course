@@ -1,10 +1,8 @@
 package pl.nullpointerexception.hibernate.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class Customer {
@@ -15,6 +13,10 @@ public class Customer {
     private String lastname;
     private LocalDateTime created;
     private LocalDateTime updated;
+
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    private Set<Order> orders;
 
     public Customer(Long id, String firstname, String lastname, LocalDateTime created, LocalDateTime updated) {
         this.id = id;
@@ -62,5 +64,24 @@ public class Customer {
 
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
     }
 }
