@@ -21,16 +21,12 @@ public class App18Join {
         em.getTransaction().begin();
 
         TypedQuery<Product> query = em.createQuery("select p from Product p " +
-                "inner join fetch p.category c " +// "on p.category_id=c.id" <--will be added by hibernate
-                "where c.id=:id", Product.class);
-        //fetch in hibernate avoids additional queries like in a previous example.
-        // without fetch, select filters entities, but not takes all entities from related tables.
-        // There must be done another select to take related entities in a LAZY way.
-        query.setParameter("id", 1L);
+                "left join fetch p.category c ", Product.class);
+//        query.setParameter("id", 1L);
         List<Product> resultList = query.getResultList();
         for (Product product : resultList) {
             logger.info(product.getName());
-            logger.info(product.getCategory().getName());
+            logger.info(product.getCategory());
         }
 
         em.getTransaction().commit();
