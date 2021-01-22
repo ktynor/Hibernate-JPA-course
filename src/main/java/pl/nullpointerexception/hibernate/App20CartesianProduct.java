@@ -22,8 +22,8 @@ public class App20CartesianProduct {
 
         TypedQuery<Product> query = em.createQuery(
                 "select p from Product p" +
-                        " left join fetch p.attributes" +
-                        " left join fetch p.reviews",
+                        " left join fetch p.attributes",
+//                removed one left join and hibernate will take data LAZY way if needed
                 Product.class);
         List<Product> resultList = query.getResultList();
         logger.info("Size: " + resultList.size());
