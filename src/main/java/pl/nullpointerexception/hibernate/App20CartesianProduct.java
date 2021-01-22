@@ -21,7 +21,7 @@ public class App20CartesianProduct {
         em.getTransaction().begin();
 
         TypedQuery<Product> query = em.createQuery(
-                "select p from Product p" +
+                "select distinct p from Product p" +
                         " left join fetch p.attributes",
 //                removed one left join and hibernate will take data LAZY way if needed
                 Product.class);
