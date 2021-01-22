@@ -37,12 +37,14 @@ ORDER BY total DESC
                         " inner join o.orderRows orw" +
                         " inner join orw.product p" +
                         " inner join p.category ca" +
-                        " group by ca, c"
+                        " group by ca, c" +
+                        " having SUM(orw.price) > 50" + //hibernate didn't understand alias 'total'
+                        " order by total desc"
         );
 
         List<Object[]> resultList = query.getResultList();
         for (Object[] row : resultList) {
-            logger.info(row[0]+ ", \t"+row[1]+ ", \t"+row[2]+ ", \t"+row[3]);
+            logger.info(row[0] + ", \t" + row[1] + ", \t" + row[2] + ", \t" + row[3]);
         }
 
         em.getTransaction().commit();
