@@ -31,21 +31,18 @@ ORDER BY total DESC
 ;
  */
         Query query = em.createQuery(
-                "select distinct c from Customer c" +
-                        " inner join fetch c.orders o" +
-                        " inner join fetch o.orderRows orw" +
-                        " inner join fetch orw.product p" +
-                        " inner join fetch p.category ca" +
+                "select distinct c.id, c.lastname as customer, ca.name as category, SUM(orw.price) as total " +
+                        "from Customer c" +
+                        " inner join c.orders o" +
+                        " inner join o.orderRows orw" +
+                        " inner join orw.product p" +
+                        " inner join p.category ca" +
                         " group by ca, c"
         );
 
-        List<Customer> resultList = query.getResultList();
-        for (Customer customer : resultList) {
-            logger.info(customer);
-            for (Order order : customer.getOrders()) {
-                logger.info(order);
-                logger.info(order.getOrderRows());
-            }
+        List<Object[]> resultList = query.getResultList();
+        for (Object[] row : resultList) {
+            logger.info(row[0]+ ", \t"+row[1]+ ", \t"+row[2]+ ", \t"+row[3]);
         }
 
         em.getTransaction().commit();
