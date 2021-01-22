@@ -20,12 +20,19 @@ public class App20CartesianProduct {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        TypedQuery<Product> query = em.createQuery(
+//        two separate queries and 5 results
+        List<Product> resultList = em.createQuery(
                 "select distinct p from Product p" +
                         " left join fetch p.attributes",
-//                removed one left join and hibernate will take data LAZY way if needed
-                Product.class);
-        List<Product> resultList = query.getResultList();
+                Product.class
+        ).getResultList();
+
+        resultList = em.createQuery(
+                "select distinct p from Product p" +
+                        " left join fetch p.reviews",
+                Product.class
+        ).getResultList();
+
         logger.info("Size: " + resultList.size());
 
         for (Product product : resultList) {
