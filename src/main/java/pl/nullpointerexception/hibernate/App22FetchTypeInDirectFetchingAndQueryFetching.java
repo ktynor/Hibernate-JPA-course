@@ -24,8 +24,8 @@ public class App22FetchTypeInDirectFetchingAndQueryFetching {
                 .setParameter("id", 1L)
                 .getSingleResult();
         logger.info(product);
-        logger.info(product.getCategory()); //@OneToOne(fetch = FetchType.LAZY)
-                                            //second query to get category
+        logger.info(product.getCategory()); //@OneToOne(fetch = FetchType.EAGER)
+        //second query to get category, but done earlier, before printing product
 
         em.getTransaction().commit();
         em.close();
