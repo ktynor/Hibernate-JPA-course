@@ -26,7 +26,8 @@ public class App22FetchTypeInDirectFetchingAndQueryFetching {
         Product product = em.find(Product.class, 1L);
         logger.info(product);
         logger.info(product.getCategory()); // @OneToOne(fetch = FetchType.EAGER)
-// this time hibernate does: left outer join in one query
+        logger.info(product.getReviews()); // @OneToOne(fetch = by default LAZY)
+// there is second LAZY query for getReviews()
         em.getTransaction().commit();
         em.close();
     }
