@@ -22,7 +22,7 @@ public class Product {
     @Column(name = "type")
     private ProductType productType;
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
 
     @OneToOne(fetch = FetchType.EAGER)
