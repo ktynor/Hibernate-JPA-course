@@ -18,15 +18,15 @@ public class App22FetchTypeInDirectFetchingAndQueryFetching {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        Product product = em.createQuery(
-                "select p from Product p where p.id=:id",
-                Product.class)
-                .setParameter("id", 1L)
-                .getSingleResult();
+//        Product product = em.createQuery(
+//                "select p from Product p where p.id=:id",
+//                Product.class)
+//                .setParameter("id", 1L)
+//                .getSingleResult();
+        Product product = em.find(Product.class, 1L);
         logger.info(product);
-        logger.info(product.getCategory()); //@OneToOne(fetch = FetchType.EAGER)
-        //second query to get category, but done earlier, before printing product
-
+        logger.info(product.getCategory()); // @OneToOne(fetch = FetchType.LAZY)
+// LAZY as expected
         em.getTransaction().commit();
         em.close();
     }
