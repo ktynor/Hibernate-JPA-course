@@ -19,7 +19,7 @@ public class Order {
 
     @OneToMany
     @JoinColumn(name = "order_id")
-    @Fetch(FetchMode.SUBSELECT)
+    @Fetch(FetchMode.JOIN)
     private Set<OrderRow> orderRows;
 
     public Long getId() {
