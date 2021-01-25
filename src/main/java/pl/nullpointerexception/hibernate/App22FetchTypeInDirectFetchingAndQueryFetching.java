@@ -18,9 +18,9 @@ public class App22FetchTypeInDirectFetchingAndQueryFetching {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        Product product = em.createQuery(// Now 3 queries type EAGER, not always necessary
+        Product product = em.createQuery(// word 'fetch' eliminates additional query for category
                 "select p from Product p" +
-                        " left join p.category c" +
+                        " left join fetch p.category c" +
                         " where p.id=:id and c.id=:catId",
                 Product.class)
                 .setParameter("id", 1L)
