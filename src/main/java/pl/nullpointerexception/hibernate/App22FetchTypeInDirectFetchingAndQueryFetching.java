@@ -18,16 +18,15 @@ public class App22FetchTypeInDirectFetchingAndQueryFetching {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-//        Product product = em.createQuery(
-//                "select p from Product p where p.id=:id",
-//                Product.class)
-//                .setParameter("id", 1L)
-//                .getSingleResult();
-        Product product = em.find(Product.class, 1L);
+        Product product = em.createQuery(// Now 3 queries type EAGER, not always necessary
+                "select p from Product p where p.id=:id",
+                Product.class)
+                .setParameter("id", 1L)
+                .getSingleResult();
+//        Product product = em.find(Product.class, 1L);
         logger.info(product);
         logger.info(product.getCategory()); // @OneToOne(fetch = FetchType.EAGER)
         logger.info(product.getReviews()); // fetch = FetchType.EAGER
-// hibernate creates 2 left outer joins for getCategory() and getReviews()
         em.getTransaction().commit();
         em.close();
     }
