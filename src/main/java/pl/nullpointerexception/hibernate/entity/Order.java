@@ -8,6 +8,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@NamedEntityGraph(
+        name = "order-rows",
+        attributeNodes = @NamedAttributeNode("orderRows")
+)
 @Entity
 @Table(name = "\"order\"") // order is a key word in SQL and needs: "order"
 public class Order {
