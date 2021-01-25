@@ -22,14 +22,19 @@ public class App23FetchMode {
         em.getTransaction().begin();
 
 //        Order order = em.find(Order.class, 1L);
-        List<Order> orders = em.createQuery("select o from Order o", Order.class
-        ).getResultList();
+        List<Order> orders = em.createQuery("select o from Order o" +
+                        " order by o.created desc ",
+                Order.class
+        )
+                .setMaxResults(5)
+                .getResultList();
         for (Order order : orders) {
             logger.info(order);
             logger.info(order.getOrderRows());
         }
-         // @Fetch(FetchMode.JOIN)
-// many additional queries for each orderRow in a LAZY way
+        // @Fetch(FetchMode.SUBSELECT)
+//
+// 2 queries but in a second query all two tables are printed, that might create problems with large DB
 
         em.getTransaction().commit();
         em.close();
