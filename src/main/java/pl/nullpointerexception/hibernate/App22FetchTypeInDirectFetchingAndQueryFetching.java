@@ -19,9 +19,12 @@ public class App22FetchTypeInDirectFetchingAndQueryFetching {
         em.getTransaction().begin();
 
         Product product = em.createQuery(// Now 3 queries type EAGER, not always necessary
-                "select p from Product p where p.id=:id",
+                "select p from Product p" +
+                        " left join p.category c" +
+                        " where p.id=:id and c.id=:catId",
                 Product.class)
                 .setParameter("id", 1L)
+                .setParameter("catId", 1L)
                 .getSingleResult();
 //        Product product = em.find(Product.class, 1L);
         logger.info(product);
