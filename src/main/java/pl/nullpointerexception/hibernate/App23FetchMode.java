@@ -22,8 +22,8 @@ public class App23FetchMode {
 
         Order order = em.find(Order.class, 1L);
         logger.info(order);
-        logger.info(order.getOrderRows()); // @Fetch(FetchMode.JOIN)
-
+        logger.info(order.getOrderRows()); // @Fetch(FetchMode.SUBSELECT)
+// Results same as before, SUBSELECT will create additional query when we use 'select' query instead of 'find'
 
         em.getTransaction().commit();
         em.close();
