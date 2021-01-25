@@ -1,5 +1,8 @@
 package pl.nullpointerexception.hibernate.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,6 +19,7 @@ public class Order {
 
     @OneToMany
     @JoinColumn(name = "order_id")
+    @Fetch(FetchMode.JOIN) // FetchMode.SELECT is by default
     private Set<OrderRow> orderRows;
 
     public Long getId() {

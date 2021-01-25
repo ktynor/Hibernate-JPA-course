@@ -2,6 +2,8 @@ package pl.nullpointerexception.hibernate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.nullpointerexception.hibernate.entity.Order;
 
 import javax.persistence.EntityManager;
@@ -20,8 +22,8 @@ public class App23FetchMode {
 
         Order order = em.find(Order.class, 1L);
         logger.info(order);
-        logger.info(order.getOrderRows());
-// one query for order and one LAZY for OrderRows
+        logger.info(order.getOrderRows()); // @Fetch(FetchMode.JOIN)
+
 
         em.getTransaction().commit();
         em.close();
