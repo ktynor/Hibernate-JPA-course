@@ -14,8 +14,7 @@ public class Customer {
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    @OneToMany
-    @JoinColumn(name = "customer_id")
+    @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 
     public Customer(Long id, String firstname, String lastname, LocalDateTime created, LocalDateTime updated) {

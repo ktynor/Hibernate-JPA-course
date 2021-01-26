@@ -26,7 +26,7 @@ public class App25EntityGraph {
         Map<String, Object> map = new HashMap<>();
         map.put("javax.persistence.fetchgraph", entityGraph);
 
-        Order order = em.find(Order.class, 1L/*, map*/);
+        Order order = em.find(Order.class, 1L, map);
         logger.info(order);
         logger.info(order.getOrderRows());
 
