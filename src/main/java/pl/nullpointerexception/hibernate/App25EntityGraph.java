@@ -29,6 +29,7 @@ public class App25EntityGraph {
         Order order = em.find(Order.class, 1L, map);
         logger.info(order);
         logger.info(order.getOrderRows());
+        logger.info(order.getCustomer());
 
         em.getTransaction().commit();
         em.close();

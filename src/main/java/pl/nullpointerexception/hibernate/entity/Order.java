@@ -10,7 +10,10 @@ import java.util.Set;
 
 @NamedEntityGraph(
         name = "order-rows",
-        attributeNodes = @NamedAttributeNode("orderRows")
+        attributeNodes = {
+                @NamedAttributeNode("orderRows"),
+                @NamedAttributeNode("customer")
+        }
 )
 @Entity
 @Table(name = "\"order\"") // order is a key word in SQL and needs: "order"

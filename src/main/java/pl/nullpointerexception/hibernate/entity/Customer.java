@@ -17,14 +17,6 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 
-    public Customer(Long id, String firstname, String lastname, LocalDateTime created, LocalDateTime updated) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.created = created;
-        this.updated = updated;
-    }
-
     public Long getId() {
         return id;
     }
